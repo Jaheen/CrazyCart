@@ -1,0 +1,56 @@
+{% extends "core/base.html" %}
+{% block title %}{{ Product.productName }}{% endblock %}
+{% block content %}
+<section class="row p-2 w-100">
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <img src="{{ Product.productImage.url }}" class="col-8 mx-auto d-block profilePicture" alt="">
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+        <div class="jumbotron bg-light">
+            <h3 id="product" data-id="{{Product.productId}}">{{ Product.productName }}</h3>
+            <h5>by {{ Product.productSeller }}</h5>
+            <button class="btn btn-primary float-right" onclick="addToCart()">Add to Cart</button>
+        </div>
+        <div class="jumbotron bg-light">
+            <h5>Price</h5>
+            <h6 id="productPrice">Rs.{{ Product.productPrice }}</h6><br>
+            <h5>Only {{ Product.productStock }} items in stock</h5><br>
+            <h6>Warranty Period : {{ Product.warrantyPeriod }} Year</h6><br>
+            <h5>Specifications :</h5><br>
+            <h6>{{ Product.productSpecifications }}</h6><br>
+            <h5>Descriptions :</h5><br>
+            <h6>{{ Product.productDescriptions }}</h6><br>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block script %}
+<script>
+    function addToCart() {
+        var storageData = localStorage.getItem("Cart");
+        var productData = {
+            productName: document.getElementById("product").innerHTML,
+            productId: document.getElementById("product").dataset.id,
+            productPrice : document.getElementById("productPrice").innerHTML
+        }
+        if (storageData != null) {
+            let dataArray = JSON.parse(storageData);
+            if (storageData.includes(JSON.stringify(productData)) == false) {
+                dataArray.push(productData);
+                console.log(dataArray);
+                localStorage.setItem("Cart", JSON.stringify(dataArray));
+                let cartCount = dataArray.length;
+                localStorage.setItem("cartNumber", JSON.stringify(cartCount));
+                updateCartNumber()
+            }
+            else {
+                prompt("ALREADY IN CART");
+            }
+        }
+        else {
+            localStorage.setItem("Cart", JSON.stringify([]));
+            addToCart();
+        }
+    }
+</script>
+{% endblock %}

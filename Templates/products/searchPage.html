@@ -1,0 +1,19 @@
+{% extends "core/base.html" %}
+{% block title %}Showing results for "{{QueryString}}"{% endblock %}
+{% block content %}
+<div class="container" id="categoryContainer">
+    <div class="overflow-hidden h-auto col-12 bg-light">
+        {% if Results %}
+        {% for Result in Results %}
+        <a href="/products/productDisplay/{{ Result.productId }}" class="d-block w-100 p-3 h-auto row text-decoration-none">
+            <img src="{{ Result.productImage.url }}" alt="" style="width: 200px;height:200px;"
+                class="col-xl-4 col-lg-4 col-md-6 col-sm-12 h-auto">
+            <h3 class="col-xl-8 col-lg-8 col-md-6 col-sm-12 d-inline-block text-center">{{ Result.productName }}</h3>
+        </a>
+        {% endfor %}
+        {% else %}
+        <h3 class="col d-block text-center bg-light" style="height: 75vh;">No results Found for "{{ QueryString }}"</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

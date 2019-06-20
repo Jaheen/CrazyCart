@@ -1,0 +1,10 @@
+# Compiled Python files
+*.pyc
+*.pyd
+# Media
+*.jpg
+*.jpeg
+*.png
+*.webp
+# Databases
+*.sqlite3

@@ -1,0 +1,57 @@
+{% extends "core/base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+<div class="container" id="cartContainer">
+    <table class="table" id="cartTable">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    let cartContainer = document.getElementById("cartContainer");
+    let cartData = JSON.parse(localStorage.getItem("Cart"));
+    {
+        if (cartData != null) {
+            let table = document.getElementById("cartTable");
+            let tbody = document.createElement("tbody");
+            for (i = 0; i < cartData.length; i++) {
+                let tr = document.createElement("tr");
+                //Head row
+                let th = document.createElement("th");
+                th.setAttribute("scope", "row");
+                th.innerHTML = i + 1;
+                tr.append(th);
+                //Data Row
+                let tdName = document.createElement("td");
+                tdName.innerHTML = cartData[i].productName;
+                tr.append(tdName);
+                //Data Row
+                let tdQuantity = document.createElement("td");
+                tdQuantity.innerHTML = 1;
+                tr.append(tdQuantity);
+                //Data Row
+                let tdPrice = document.createElement("td");
+                tdPrice.innerHTML = cartData[i].productPrice;
+                tr.append(tdPrice);
+                console.log(tr);
+                tbody.append(tr);
+            }
+            table.append(tbody);
+        } else {
+            let table = document.getElementById("cartTable");
+            let tbody = document.createElement("tbody");
+            tbody.innerHTML = "NO ITEMS ARE IN THE CART";
+            tbody.classList.add("text-center");
+            table.append(tbody);
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% block title %}Login | CrazyCart{% endblock %}
+{% block content %}
+<section class="authBackground">
+    <section class="col-xl-4 col-lg-4 col-md-6 col-sm-8 formContainer p-5">
+        <form action="/accounts/verifyEmail" id="loginForm" method="POST">{% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <b class="text-center text-danger d-block">{{message}}</b>
+            {% endfor %}
+            {% endif %}
+            <b class="text-center text-info d-block">Please Verify Your Email</b>
+            <div class="form-group">
+                <input class="form-control" type="text" name="otp" id="otp" placeholder="Enter OTP Here">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-block btn-primary" value="Verify OTP">
+            </div>
+        </form>
+    </section>
+</section>
+{% endblock %}

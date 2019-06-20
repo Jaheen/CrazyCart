@@ -1,0 +1,29 @@
+{% extends "core/base.html" %}
+{% block title %}Login | CrazyCart{% endblock %}
+{% block content %}
+<section class="authBackground">
+    <section class="col-xl-4 col-lg-4 col-md-6 col-sm-8 formContainer p-5">
+        <form action="/accounts/login" id="loginForm" method="POST">{% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <b class="text-center text-danger d-block">{{message}}</b>
+            {% endfor %}
+            {% endif %}
+            <div class="form-group">
+                <input class="form-control" type="email" name="email" id="email" placeholder="Email Address">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-block btn-primary" value="Login">
+            </div>
+        </form>
+        <a href="/accounts/forgotPassword" class="text-decoration-none d-block float-right">Forgot
+            Password</a>
+        <hr>
+        <small class="form-text text-muted">not have an account?</small>
+        <a href="/accounts/signUp" class="text-decoration-none btn-block btn btn-primary" style="color:#fff">Create Account</a>
+    </section>
+</section>
+{% endblock %}

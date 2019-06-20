@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
+header a {
+    font-family: "Pacifico", cursive;
+    color: #fff !important;
+}
+
+a:hover {
+    color: #fff
+}
+
+#menuToggle {
+    padding: 5px;
+    height: fit-content;
+    width: fit-content;
+    background-color: transparent;
+    border: none;
+}
+
+#brandImg {
+    height: 35px;
+    width: 40px;
+}
+
+#searchBar {
+    width: 60vw;
+    display: flex;
+    margin: auto;
+}
+
+#searchBox {
+    width: 90%;
+    height: auto;
+}
+
+#menuBox * {
+    border-radius: 0 !important;
+}
+
+div.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    opacity: 0.7;
+}
+
+footer h5 {
+    color: #fff;
+}
+
+footer a {
+    color: #fff;
+}
+
+input, button, .btn {
+    border-radius: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.authBackground {
+    background: url("/static/images/background.jpg")fixed;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh;
+    width: 100%;
+    height: 75vh;
+    overflow: hidden;
+}
+
+.formContainer input.form-control {
+    color: #fff;
+    background-color: transparent;
+    border-bottom: #007bff 1px solid !important;
+}
+
+.formContainer {
+    background: rgba(0, 0, 0, 0.418);
+    position: relative;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.profilePicture{
+    padding :30px 30px;
+    height: 230px;
+    width: 230px;
+}
+
+#myCarousel{
+    width: 100%;
+    height: 50vh;
+}
+
+#categoryContainer a:hover{
+    color: #007bff
+}
+#productContainer img{
+    width: 200px;
+    height: 200px;
+}
+
+@media(max-width:768px) {
+    #searchBar {
+        width: 90vw;
+    }
+    a > img{
+        display: block !important;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

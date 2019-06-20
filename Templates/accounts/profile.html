@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% block title %}My Account{% endblock %}
+{% block content %}
+<section class="row p-2 w-100">
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        {% if user %}
+        <img src="{{ user.profilePicture.url }}" class="col-8 rounded-circle mx-auto d-block profilePicture" alt="">
+        {% endif %}
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+        {% if user %}
+        <div class="jumbotron bg-light">
+            <h3 class="d-block m-0 p-0">{{ user.firstName }} {{ user.lastName }}</h3> 
+            {% if user.consumerUser and user.merchantUser %}
+            <h5 class="d-block m-0 p-0">Customer as well as Merchant</h5>
+            {% elif user.consumerUser %}
+            <h5 class="d-block m-0 p-0">Customer</h5>
+            {% endif %}
+        </div>
+        <div class="jumbotron overflow-hidden bg-light">
+            <h3 class="d-block m-0 p-0">Account Details</h3><br>
+            <h5 class="d-block m-0 p-0">First Name : {{ user.firstName }}</h5><br>
+            <h5 class="d-block m-0 p-0">Last Name : {{ user.lastName }}</h5><br>
+            <h5 class="d-block m-0 p-0">Email : {{ user.email }}</h5><br>
+            <h5 class="d-block m-0 p-0">Mobile Number : {{ user.mobileNumber }}</h5><br>
+            <h5 class="d-block m-0 p-0">Permanent Address : {{ user.permanentAddress }}</h5><br>
+            <h5 class="d-block m-0 p-0">City : {{ user.city }}</h5><br>
+            <h5 class="d-block m-0 p-0">Zip/Pin Code : {{ user.code }}</h5><br>
+            <h5 class="d-block m-0 p-0">Country : {{ user.country }}</h5><br>
+            <a href="/accounts/updateProfile" class=" btn btn-primary float-right">Update Profile</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

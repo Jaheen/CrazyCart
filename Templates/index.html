@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block title %}CrazyCart{% endblock %}
+
+{% block MSG %}
+{% if messages %}
+{% for message in messages %}
+<b class="text-center text-info d-block col-12 alert-info">{{message}}</b>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<section class="row ml-0 mr-0 bg-secondary overflow-hidden text-center" style="height: 50vh;">
+    <div class="col-auto mx-auto my-auto" style="color: #fff;">
+        <h3 style="font-family: Pacifico;" class="col-auto mx-auto d-block">Welcome To CrazyCart</h3>
+    </div>
+</section>
+
+<section class="row ml-0 mr-0 bg-white pt-5 pb-3">
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mx-auto my-auto text-center">
+        <img src="{% static 'images/shipping.jpg' %}" alt="" class="img-fluid d-block mx-auto" style="height: 250px; width: 250px;">
+        <p>We have customers in more than 19 countries and we provide shipping over 15 countries directly.</p>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mx-auto my-auto text-center">
+        <img src="{% static 'images/returns.jpg' %}" alt="" class="img-fluid d-block mx-auto" style="height: 250px; width: 250px;">
+        <p>100% Hassle free returns on all products that are provided by us.
+            So no worry be free.
+        </p>
+    </div>
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 mx-auto my-auto text-center">
+        <img src="{% static 'images/best.png' %}" alt="" class="img-fluid d-block mx-auto" style="height: 250px; width: 250px;">
+        <p>We are known for our best products and services to our customers.</p>
+    </div>
+</section>
+{% endblock %}
+{% block script %}
+{% endblock %}

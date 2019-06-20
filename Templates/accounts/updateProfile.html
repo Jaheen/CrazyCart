@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+{% block title %}My Account{% endblock %}
+{% block content %}
+<section class="row p-2 w-100">
+    <div class="col-10 mx-auto">
+        {% if user %}
+        <form action="/accounts/updateProfile" method="post" class="jumbotron bg-light" id="profileUpdateForm" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-group">
+                <label for="avatar">Profile Picture :</label>
+                <img src="{{ user.profilePicture.url }}" alt="" class="d-block mx-auto profilePicture">
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <label for="profilePicture" class="custom-file-label">Upload Profile Image</label>
+                    <input type="file" class="custom-file-input" name="profilePicture" id="profilePicture">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="firstName">First Name :</label>
+                <input type="text" class="form-control" name="firstName" id="firstName" value="{{ user.firstName }}"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name :</label>
+                <input type="text" class="form-control" name="lastName" id="lastName" value="{{ user.lastName }}"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNumber">Mobile :</label>
+                <input type="number" class="form-control" name="mobileNumber" id="mobileNumber"
+                    value="{{ user.mobileNumber }}">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Permanent Address :</label>
+                <textarea class="form-control" name="permanentAddress"
+                    id="permanentAddress" style="box-shadow: none;">{{ user.permanentAddress }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="city">City :</label>
+                <input type="text" class="form-control" name="city" id="city" value="{{ user.city }}">
+            </div>
+            <div class="form-group">
+                <label for="zip/pincode">Zip / Pin Code :</label>
+                <input type="text" class="form-control" name="zip/pincode" id="zip/pincode" value="{{ user.code }}">
+            </div>
+            <div class="form-group">
+                <label for="country">Country :</label>
+                <input type="text" class="form-control" name="country" id="country" value="{{ user.country }}"
+                    list="countrylist">
+                <datalist id="countrylist"></datalist>
+            </div>
+            <button class="btn btn-primary float-right">Update Info</button>
+        </form>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+{% block script %}
+<script>
+    window.onload = function () {
+        let country_list = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Anguilla", "Antigua &amp; Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahamas"
+            , "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia &amp; Herzegovina", "Botswana", "Brazil", "British Virgin Islands"
+            , "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands", "Costa Rica"
+            , "Cote D Ivoire", "Croatia", "Cruise Ship", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea"
+            , "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji", "Finland", "France", "French Polynesia", "French West Indies", "Gabon", "Gambia", "Georgia", "Germany", "Ghana"
+            , "Gibraltar", "Greece", "Greenland", "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau", "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India"
+            , "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy", "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kuwait", "Kyrgyz Republic", "Laos", "Latvia"
+            , "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Mauritania"
+            , "Mauritius", "Mexico", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Namibia", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia"
+            , "New Zealand", "Nicaragua", "Niger", "Nigeria", "Norway", "Oman", "Pakistan", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal"
+            , "Puerto Rico", "Qatar", "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre &amp; Miquelon", "Samoa", "San Marino", "Satellite", "Saudi Arabia", "Senegal", "Serbia", "Seychelles"
+            , "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "South Africa", "South Korea", "Spain", "Sri Lanka", "St Kitts &amp; Nevis", "St Lucia", "St Vincent", "St. Lucia", "Sudan"
+            , "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga", "Trinidad &amp; Tobago", "Tunisia"
+            , "Turkey", "Turkmenistan", "Turks &amp; Caicos", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay"
+            , "Uzbekistan", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia", "Zimbabwe"];
+        let datalist = document.getElementById("countrylist");
+        for (i = 0; i < country_list.length; i++) {
+            let option = document.createElement("OPTION");
+            option.setAttribute("value", country_list[i]);
+            datalist.append(option);
+        }
+    }
+</script>
+{% endblock %}
